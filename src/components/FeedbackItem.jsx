@@ -1,16 +1,23 @@
-// import {useState} from 'react'
-
-function FeedbackItem({item}) {
-  // const [rating, setRating] = useState(7)
-  // const [text, setText] = useState('This is an example of a text display')
-
+import PropTypes from 'prop-types'
+import Card from './shared/Card'
+import { FaTimes } from 'react-icons/fa'
+function FeedbackItem({item, handleDelete}) {
+  // let handleClick = (id) => {
+  //   console.log('reached handle click', {id})
+  // }
   return (
-    <div className="card">
+    <Card>
       <div className="num-display">{item.rating}</div>
+      <button className="close" onClick={() => handleDelete(item.id)}>
+        <FaTimes color='purple'></FaTimes>
+      </button>
       <div className="text-display">{item.text}</div>
-    </div>
+    </Card>
   )
 }
 
+FeedbackItem.propTypes = {
+  item: PropTypes.object.isRequired
+}
 export default FeedbackItem
  
