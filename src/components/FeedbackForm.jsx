@@ -8,7 +8,7 @@ function FeedbackForm({handleAdd}) {
   const [message, setMessage] = useState(null)
   const [btnDisabled, setBtnDisabled] = useState(true)
 
-  let handleTextChange = (ev) => {
+  const handleTextChange = (ev) => {
     setText(ev.target.value)
     if(text === '') {
       setMessage('')
@@ -33,13 +33,15 @@ function FeedbackForm({handleAdd}) {
       // console.log({newFeedback})
       handleAdd(newFeedback)
       setText('')
+      setRating(10)
     }
   }
    return (
     <Card>
       <form onSubmit={handleSubmit}>
-        <h2>How would you rate your service with us?</h2>
-        <RatingSelect select={(rating)=> setRating(rating)}/>
+        <h2>How would you rate our service?</h2>
+        {/* We receive the rating as a param from RatingSelect and set the updated value */}
+        <RatingSelect select={(rating) => setRating(rating)} />
         <div className="input-group">
           <input 
             onChange={handleTextChange} 

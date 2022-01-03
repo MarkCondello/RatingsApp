@@ -1,10 +1,10 @@
 import {useState} from 'react'
-function RatingSelect({select}) {
+function RatingSelect({ select }) {
   const [selected, setSelected] = useState(10)
   const handleChange = (ev) => {
     // console.log('Reached handleChange, val:', parseInt(ev.currentTarget.value))
     setSelected(parseInt(ev.currentTarget.value))
-    select(parseInt(ev.currentTarget.value)) // function passed through as a prop
+    select(parseInt(ev.currentTarget.value)) // select function passed in from FeedbackForm as a prop gets the updated rating value selected
   }
   return (
     <ul className="rating">
