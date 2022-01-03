@@ -11,39 +11,41 @@ import FeedbackForm from './components/FeedbackForm'
 import AboutIconLink from './components/AboutIconLink'
 import Post from './components/Post'
 
+import { FeedbackProvider } from './context/FeedbackContext'
+
 function App() {
   const [feedback, setFeedback] = useState(FeedbackData)
   const deleteFeedback = ((id) => {
-    // console.log('from App.js', {id})
     if(window.confirm('Are you sure you want to delete this item?')) {
       setFeedback(feedback.filter(item => item.id !== id))
     }
   })
   const addFeedback = (newFeedback => {
     newFeedback.id = uuidv4()
-    console.log('From App: ', {newFeedback})
     setFeedback([newFeedback, ...feedback] )
   })
   return (
-  <Router>
-    <Header text='Ratings App' />
-    <div className="container">
-      <Routes> 
-        <Route exact path='/' element={
-          <>
-            <FeedbackForm handleAdd={addFeedback} />
-            <FeedbackStats feedback={feedback} />
-            <FeedbackList feedback={feedback} handleDelete={deleteFeedback} />
-          </>
-        }> 
-        </Route>
-        <Route path='/about' element={<About />} />
-        <Route path='/post/*' element={<Post />} />
-        {/* <Route path='/post/:id/:name' element={<Post />} /> */}
-      </Routes>
-      <AboutIconLink />
-      </div>
-   </Router>
+    <FeedbackProvider>
+      <Router>
+        <Header text='Ratings App' />
+        <div className="container">
+          <Routes> 
+            <Route exact path='/' element={
+              <>
+                <FeedbackForm handleAdd={addFeedback} />
+                <FeedbackStats />
+                <FeedbackList handleDelete={deleteFeedback} />
+              </>
+            }> 
+            </Route>
+            <Route path='/about' element={<About />} />
+            <Route path='/post/*' element={<Post />} />
+            {/* <Route path='/post/:id/:name' element={<Post />} /> */}
+          </Routes>
+          <AboutIconLink />
+          </div>
+      </Router>
+    </FeedbackProvider>
   )
 }
 
