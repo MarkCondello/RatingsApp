@@ -1,5 +1,6 @@
 import {useState} from 'react'
-import { useParams, Navigate, useNavigate, Routes, Route } from 'react-router-dom'
+import { Navigate, useNavigate, Routes, Route } from 'react-router-dom'
+// import { useParams, Navigate, useNavigate, Routes, Route } from 'react-router-dom'
 import AuthorSelector from './AuthorSelector'
 function Post() {
   const [author, setAuthor] = useState('Anonymouse')
