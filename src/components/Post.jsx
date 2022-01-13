@@ -3,7 +3,7 @@ import { useParams, Navigate, useNavigate, Routes, Route } from 'react-router-do
 import AuthorSelector from './AuthorSelector'
 function Post() {
   const [author, setAuthor] = useState('Anonymouse')
-  const params = useParams()
+  // const params = useParams()
   const status = 200
  
   const navigate = useNavigate()
